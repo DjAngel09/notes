@@ -1,0 +1,11 @@
+<section class="dashboard mt-5">
+    <div class="row">
+        <div class="card col-3" *ngFor="let note of notes | async">
+            <div class="card-body">
+                <h5 class="card-title">{{ note.title }}</h5>
+                <p class="card-text">{{note.content}}</p>
+                <p>{{note.date * 1000 | date: 'dd-MM-YYYY'}}</p>
+            </div>
+        </div>
+    </div>
+</section>
