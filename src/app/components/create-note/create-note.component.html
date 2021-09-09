@@ -1,0 +1,13 @@
+<section class="create-note">
+    <form (ngSubmit)="createNote()" [formGroup]="noteForm">
+        <div class="mb-3">
+            <label for="title" class="form-label">Titulo:</label>
+            <input type="text" oninput="this.value = this.value.toUpperCase()" formControlName="title" class="form-control" id="title" placeholder="Titulo:">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Nota:</label>
+            <textarea oninput="this.value = this.value.toUpperCase()" class="form-control" formControlName="content" id="content" rows="3" placeholder="Agrega una nota..." ></textarea>
+        </div>
+        <button class="btn btn-outline-primary btn-block" type="submit">Guardar</button>
+    </form>
+</section>

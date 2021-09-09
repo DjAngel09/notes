@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { noteInterface } from '../../interfaces/note-form-interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
 
-  notes: Observable<any[]>;
+  public notes: Observable<any>;
+  public idNoteEdit:string = '';
 
   constructor(private firestore: AngularFirestore) { 
     this.notes = this.firestore.collection('notes').valueChanges();
@@ -17,7 +19,16 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     
-    
+  }
+
+  removeNote(id:string){
+
+    this.firestore.collection('notes').doc(id).delete();
+
+  }
+
+  editNote(id:string){
+    this.idNoteEdit = id;
   }
 
 }
