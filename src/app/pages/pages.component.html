@@ -1,0 +1,16 @@
+<style>
+    .container{
+        padding: 93px 24px 24px 113px;
+    }
+    @media (max-width: 575px) {
+        .container{
+            padding: 50px 24px 24px 84px;
+        }
+    }
+</style>
+
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

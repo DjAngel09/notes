@@ -4,21 +4,17 @@ import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { CreateNoteComponent } from './components/create-note/create-note.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PagesModule } from './pages/pages.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    DashboardComponent,
-    CreateNoteComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +22,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    PagesModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

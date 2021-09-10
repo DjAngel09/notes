@@ -13,21 +13,26 @@ export class CreateNoteComponent implements OnInit, OnChanges {
 
   private colletionNote: AngularFirestoreCollection<noteInterface>;
   @Input() id: string = '';
+  @Input() uid: string |  undefined = '';
 
   public noteForm:any;
 
-  constructor( private fb: FormBuilder, private db: AngularFirestore, private _noteService: NotesService) { 
+  constructor( 
+    private fb: FormBuilder, 
+    private db: AngularFirestore, 
+    private _noteService: NotesService
+  ) { 
+
     this.colletionNote = db.collection<noteInterface>('notes');
     this.createForm();
+
   }
 
   ngOnInit() {
     
   }
 
-  ngOnChanges() {
-    console.log(this.id);
-    
+  ngOnChanges() {    
     if(this.id !== ''){
       this.editNote();
     }else{
@@ -38,6 +43,7 @@ export class CreateNoteComponent implements OnInit, OnChanges {
 
   createForm(){
     this.noteForm = this.fb.group({
+      iduser: [this.uid],
       id:[this.db.createId()],
       title: ['', [ Validators.required]],
       content: ['', [Validators.required]],
@@ -48,7 +54,6 @@ export class CreateNoteComponent implements OnInit, OnChanges {
 
   editNote(){
     this.colletionNote.doc(this.id).valueChanges().subscribe((data) => {
-      console.log(data);
       this.noteForm.setValue({
         ...data
       })
@@ -56,14 +61,13 @@ export class CreateNoteComponent implements OnInit, OnChanges {
   }
 
   createNote(){
-    let note: noteInterface = this.noteForm.value;
+    const note: noteInterface = this.noteForm.value;        
+    this._noteService.createNote(note, (res:any)=>{
+      this.createForm();
+      const modal:HTMLElement= document.getElementById('noteModal') as HTMLElement;
+      modal.click();
 
-    console.log(note);
-    
-
-    this.colletionNote.doc(note.id).set(note).then(res => {
-      console.log('bien', res);
-    }).catch(err => console.log('mal', err));
+    });
   }
 
 }

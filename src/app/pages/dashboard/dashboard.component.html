@@ -1,35 +1,38 @@
 <section class="dashboard mt-5">
-    <div class="row">
-        <div class="card col-3 p-0" *ngFor="let note of notes | async">
-          <div class="card-header bg-transparent">
-            <i class="bi bi-trash" (click)="removeNote(note.id)" ></i>
-            <i class="bi bi-archive"></i>
-          </div>
-
-          <div class="card-body" (click)="editNote(note.id)" href="#noteModal" data-bs-toggle="modal">
-              <h5 class="card-title">{{ note.title }}</h5>
-              <p class="card-text">{{note.content}}</p>
-          </div>
-
-          <div class="card-footer bg-transparent">
-              <p>{{note.date * 1000 | date: 'dd-MM-YYYY'}}</p> <!--  * 1000 | date: 'dd-MM-YYYY' -->
-          </div>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5" *ngFor="let note of notes | async">
+      <div class="card p-0">
+        <div class="card-header bg-transparent">
+          <i class="bi bi-trash" (click)="removeNote(note.id)" title="Eliminar"></i>
+          <i class="bi" title="Archivar/Desarchivar" [ngClass]="{'bi-box-arrow-in-down': !archived, 'bi-box-arrow-up': archived}" (click)="archiveNote(note)"></i>
         </div>
-    </div>
-
-    <div class="modal fade" id="noteModal" #content aria-hidden="true" aria-labelledby="noteModalLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-body">
-              <app-create-note [id]="idNoteEdit"></app-create-note>
-            </div>
-          </div>
+  
+        <div class="card-body" (click)="editNote(note.id)" href="#noteModal" data-bs-toggle="modal">
+          <h5 class="card-title">{{ note.title }}</h5>
+          <p class="card-text">{{note.content}}</p>
+        </div>
+  
+        <div class="card-footer bg-transparent">
+          <p>{{note.date * 1000 | date: 'dd-MM-YYYY'}}</p> 
         </div>
       </div>
-
-    <div class="create-note">
-        <button class="btn btn-outline-success" (click)="idNoteEdit = '' " data-bs-toggle="modal" href="#noteModal" role="button">
-            <i class="bi bi-plus-lg"></i>
-        </button>
     </div>
+  </div>
+
+  <div class="modal fade" id="noteModal" #content aria-hidden="true" aria-labelledby="noteModalLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <app-create-note [id]="idNoteEdit" [uid]="uid" ></app-create-note>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="create-note" *ngIf="!archived" >
+    <button class="btn btn-info" (click)="idNoteEdit = '' " data-bs-toggle="modal" href="#noteModal"
+      role="button">
+      <i class="bi bi-plus-lg"></i>
+    </button>
+  </div>
 </section>

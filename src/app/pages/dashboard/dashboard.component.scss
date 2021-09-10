@@ -1,0 +1,37 @@
+.dashboard{
+    .card{
+        color: #e8eaed;
+        background-color: transparent;
+        border-color: #5f6368;
+        .card-header{
+            border-bottom: 1px solid #5f6368;
+            .bi{
+                margin-right: 12px;
+                font-size: 18px;
+            }
+        }
+        .card-footer{
+            border-top: 1px solid #5f6368;
+        }
+    }
+    .create-note{
+        position: fixed;
+        bottom: 34px;
+        right: 34px;
+        .btn{
+            border-radius: 30px;
+            width: 60px;
+            height: 60px;
+        }
+    }
+
+    .modal{
+        .modal-dialog{
+            .modal-content{
+                border-color: #5f6368;
+                background-color: #202124;
+                border-radius: 24px;
+            }
+        }
+    }
+}
