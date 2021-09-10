@@ -2,7 +2,8 @@
     <form (ngSubmit)="createNote()" [formGroup]="noteForm">
         <div class="mb-3">
             <label for="title" class="form-label">Titulo:</label>
-            <input type="text" oninput="this.value = this.value.toUpperCase()" formControlName="title" class="form-control" id="title" placeholder="Titulo:">
+            <input type="text" autocomplete="off" oninput="this.value = this.value.toUpperCase()" formControlName="title" class="form-control" id="title" placeholder="Titulo:">
+            <div id="emailHelp" class="form-text" *ngIf="noteForm.controls.title.touched && noteForm.controls.title.errors?.isEmail" >El titulo no puede ser un correo electrónico</div>
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">Nota:</label>
