@@ -90,7 +90,6 @@ export class CreateNoteComponent implements OnInit, OnChanges {
         modal.click();
 
       });
-      
     }
   }
 

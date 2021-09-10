@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="noteModal" #content aria-hidden="true" aria-labelledby="noteModalLabel" tabindex="-1">
+  <div *ngIf="!archived" class="modal fade" id="noteModal" #content aria-hidden="true" aria-labelledby="noteModalLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
