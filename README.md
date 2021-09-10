@@ -1,4 +1,10 @@
 
+# Usuarios de prueba
+
+test1@test.com - 123456
+test2@test.com - 123456
+test3@test.com - 123456
+
 # Notas
 
 Esta prueba fue creada con angular 12, firebase y bootstrap.
